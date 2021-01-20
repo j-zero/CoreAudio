@@ -130,6 +130,22 @@ namespace CoreAudio
             }
         }
 
+        public string Description
+        {
+            get
+            {
+                if (_PropertyStore == null) GetPropertyInformation();
+                if (_PropertyStore.Contains(PKEY.PKEY_Device_DeviceDesc))
+                {
+                    return (string)_PropertyStore[PKEY.PKEY_Device_DeviceDesc].Value;
+                }
+                else
+                {
+                    return "Unknown";
+                }
+            }
+        }
+
 
         public string ID
         {
