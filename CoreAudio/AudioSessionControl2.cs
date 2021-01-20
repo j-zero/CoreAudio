@@ -57,7 +57,7 @@ namespace CoreAudio
 
         private AudioSessionEvents _AudioSessionEvents;
 
-        internal AudioSessionControl2(IAudioSessionControl2 realAudioSessionControl2)
+        public AudioSessionControl2(IAudioSessionControl2 realAudioSessionControl2)
         {
             _AudioSessionControl2 = realAudioSessionControl2;
 

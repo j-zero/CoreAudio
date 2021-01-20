@@ -96,7 +96,7 @@ namespace CoreAudio
                 var handler = DeviceRemoved;
                 if (handler != null)
                 {
-                    handler(this, new AudioDeviceRemovedEventArgs(pwstrDeviceId));
+                    handler(this, new MMDeviceRemovedEventArgs(pwstrDeviceId));
                 }
             });
         }
@@ -112,7 +112,7 @@ namespace CoreAudio
                     if (device == null)
                         return;     // Device was already removed by the time we got here
 
-                    handler(this, new AudioDeviceStateEventArgs(device, dwNewState));
+                    handler(this, new MMDeviceStateEventArgs(device, dwNewState));
                 }
             });
         }
