@@ -37,8 +37,8 @@ namespace CoreAudio.Interfaces
         [PreserveSig]
         int GetDevice(string pwstrId, out IMMDevice ppDevice);
         [PreserveSig]
-        int RegisterEndpointNotificationCallback(IntPtr pClient);
+        int RegisterEndpointNotificationCallback(IMMNotificationClient client);
         [PreserveSig]
-        int UnregisterEndpointNotificationCallback(IntPtr pClient);
+        int UnregisterEndpointNotificationCallback(IMMNotificationClient client);
     }
 }
