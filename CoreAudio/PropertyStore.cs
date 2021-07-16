@@ -70,8 +70,14 @@ namespace CoreAudio
                     PROPERTYKEY key = Get(i);
                     if (key.fmtid == testKey.fmtid && key.pid == testKey.pid)
                     {
+                        try { 
                         Marshal.ThrowExceptionForHR(_Store.GetValue(ref key, out PropVariant result));
                         return new PropertyStoreProperty(key, result);
+                        }
+                        catch
+                        {
+                            ;
+                        }
                     }
                 }
                 return null;

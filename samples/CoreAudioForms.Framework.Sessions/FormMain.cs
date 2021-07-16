@@ -24,7 +24,7 @@ namespace CoreAudioForms.Framework.Sessions {
             ComboBoxDevices.SelectedIndexChanged += (_, __) => EnumerateSessions();
 
             MMDeviceEnumerator deviceEnumerator = new MMDeviceEnumerator();
-            var devCol = deviceEnumerator.EnumerateAudioEndPoints(EDataFlow.eRender, DEVICE_STATE.DEVICE_STATE_ACTIVE);
+            var devCol = deviceEnumerator.EnumerateAudioEndPoints(EDataFlow.eCapture, DEVICE_STATE.DEVICE_STATE_ACTIVE);
             for(int i = 0; i < devCol.Count; i++) {
                 ComboBoxDevices.Items.Add(new RenderDevice(devCol[i]));
             }
@@ -52,6 +52,11 @@ namespace CoreAudioForms.Framework.Sessions {
                     TableLayoutPanelSessions.Controls.Add(sui);
                 }
             }
+        }
+
+        private void FormMain_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

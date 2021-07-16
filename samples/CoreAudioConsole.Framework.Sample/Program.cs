@@ -6,12 +6,15 @@ namespace CoreAudioConsole.Framework.Sample {
     class Program {
         static void Main(string[] args) {
             MMDeviceEnumerator DevEnum = new MMDeviceEnumerator();
-            MMDevice device = DevEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
+            MMDevice device = DevEnum.GetDefaultAudioEndpoint(EDataFlow.eCapture, ERole.eMultimedia);
             // Note the AudioSession manager did not have a method to enumerate all sessions in windows Vista
             // this will only work on Win7 and newer.
 
             foreach(var session in device.AudioSessionManager2.Sessions) {
                 if(session.State == AudioSessionState.AudioSessionStateActive) {
+                    
+
+
                     Console.WriteLine("DisplayName: {0}", session.DisplayName);
                     Console.WriteLine("State: {0}", session.State);
                     Console.WriteLine("IconPath: {0}", session.IconPath);
@@ -20,7 +23,6 @@ namespace CoreAudioConsole.Framework.Sample {
                     Console.WriteLine("ProcessID: {0}", session.GetProcessID);
                     Console.WriteLine("IsSystemIsSystemSoundsSession: {0}", session.IsSystemSoundsSession);
                     Process p = Process.GetProcessById((int)session.GetProcessID);
-                    Console.WriteLine("ProcessName: {0}", p.ProcessName);
                     Console.WriteLine("MainWindowTitle: {0}", p.MainWindowTitle);
                     AudioMeterInformation mi = session.AudioMeterInformation;
                     SimpleAudioVolume vol = session.SimpleAudioVolume;

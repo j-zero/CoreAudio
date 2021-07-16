@@ -30,5 +30,6 @@ namespace CoreAudio.Interfaces
     {
         [PreserveSig]
         int OnSessionCreated(Interfaces.IAudioSessionControl2 NewSession);
+        int OnSessionDisconnected(Interfaces.IAudioSessionControl2 NewSession);
     }
 }

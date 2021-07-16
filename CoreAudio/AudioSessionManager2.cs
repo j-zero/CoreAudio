@@ -37,6 +37,9 @@ namespace CoreAudio
         public delegate void SessionCreatedDelegate(object sender, IAudioSessionControl2 newSession);
         public event SessionCreatedDelegate OnSessionCreated;
 
+        public delegate void SessionDestroyedDelegate(object sender, IAudioSessionControl2 newSession);
+        public event SessionDestroyedDelegate OnSessionDestroyed;
+
         private AudioSessionNotification _AudioSessionNotification;
         
         internal AudioSessionManager2(IAudioSessionManager2 realAudioSessionManager2)
@@ -48,6 +51,11 @@ namespace CoreAudio
         internal void FireSessionCreated(IAudioSessionControl2 newSession)
         {
             OnSessionCreated?.Invoke(this, newSession);
+        }
+
+        internal void FireSessionDestroyed(IAudioSessionControl2 newSession)
+        {
+            OnSessionDestroyed?.Invoke(this, newSession);
         }
 
         public void RefreshSessions()

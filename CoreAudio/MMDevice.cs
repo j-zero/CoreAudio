@@ -122,8 +122,8 @@ namespace CoreAudio
             get
             {
                 if (_PropertyStore == null) GetPropertyInformation();
-                if(_PropertyStore.Contains(PKEY.PKEY_DeviceInterface_FriendlyName)) {
-                    return (string)_PropertyStore[PKEY.PKEY_DeviceInterface_FriendlyName].Value;
+                if(_PropertyStore.Contains(PKEY.PKEY_DeviceInterface_FriendlyName) && _PropertyStore[PKEY.PKEY_DeviceInterface_FriendlyName] != null) {
+                        return (string)_PropertyStore[PKEY.PKEY_DeviceInterface_FriendlyName].Value;
                 } else {
                     return "Unknown";
                 }
@@ -151,7 +151,15 @@ namespace CoreAudio
         {
             get
             {
-                Marshal.ThrowExceptionForHR(_RealDevice.GetId(out string Result));
+                string Result = "";
+                try
+                {
+                    Marshal.ThrowExceptionForHR(_RealDevice.GetId(out Result));
+                }
+                catch
+                {
+
+                }
                 return Result;
             }
         }

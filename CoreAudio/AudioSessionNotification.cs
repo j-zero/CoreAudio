@@ -40,5 +40,10 @@ namespace CoreAudio
             _Parent.FireSessionCreated(NewSession);
             return 0;
         }
+        public int OnSessionDisconnected(IAudioSessionControl2 NewSession)
+        {
+            _Parent.FireSessionDestroyed(NewSession);
+            return 0;
+        }
     }
 }
